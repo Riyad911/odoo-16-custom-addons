@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+    <!--
+        Extend the standard Odoo Survey form.
+
+        These two fields allow the administrator to configure
+        which survey questions contain the applicant's email
+        address and phone number.
+    -->
+    <record id="view_survey_form_duplicate_prevention" model="ir.ui.view">
+
+        <field name="name">
+            survey.survey.form.duplicate.prevention
+        </field>
+
+        <field name="model">survey.survey</field>
+
+        <!-- Inherit the standard Odoo 16 Survey form view. -->
+        <field name="inherit_id" ref="survey.survey_survey_view_form"/>
+
+        <field name="arch" type="xml">
+
+            <!--
+                Add our configuration fields after the Survey responsible user.
+            -->
+            <xpath expr="//field[@name='user_id']" position="after">
+
+                <!-- Question containing the applicant's email address. -->
+                <field name="email_question_id"/>
+
+                <!-- Question containing the applicant's phone number. -->
+                <field name="phone_question_id"/>
+
+            </xpath>
+
+        </field>
+
+    </record>
+
+</odoo>
